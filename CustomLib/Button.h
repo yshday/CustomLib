@@ -1,8 +1,5 @@
 #pragma once
 
-#include "ImageBase.h"
-#include "MemoryDC.h"
-
 #include <memory>
 
 using namespace Gdiplus;
@@ -15,7 +12,7 @@ public:
 	Button();
 	virtual ~Button();
 
-	enum State
+	enum class State : int
 	{
 		Normal,
 		Hover,
@@ -25,11 +22,9 @@ public:
 		StateCount
 	};
 
-
-	virtual BOOL Create(LPCTSTR caption, DWORD style, const RECT& rect, CWnd* parent, UINT id, LPCTSTR imagePath, bool isAutoResize);
-	void OffsetText(const int left, const int top);
-	void EnableHoverCursor(BOOL enable);
-	void SetFont(CString fontName, int fontSize);
+	void SetImage(HBITMAP image);
+	void SetSize(int width, int height);
+	void SetBackgroundColor(COLORREF color);
 
 protected:
 	DECLARE_MESSAGE_MAP()
@@ -46,18 +41,14 @@ protected:
 	afx_msg void	OnEnable(BOOL bEnable);
 
 private:
-	void Resize(UINT width, UINT height);
+	void Draw(HDC hdc);
+	void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr);
 
-	ImageBase m_images[StateCount];
-	MemoryDC* m_backDC;
-	std::unique_ptr<Gdiplus::Font> m_font;
-	int m_textLeft;
-	int m_textTop;
-	CRect m_textRect;
-	BOOL m_isTracking;
-	BOOL m_isHover;
-	BOOL m_enableHoverCursor;
-	BOOL m_enabled;
-
+	HBITMAP m_image = NULL;
+	CSize m_size;
+	State m_state = State::Normal;
+	BOOL m_hover = FALSE;
+	BOOL m_isTracking = FALSE;
+	COLORREF m_backgroundColor;
 };
 
