@@ -192,6 +192,7 @@
     <ClInclude Include="ImageBase.h" />
     <ClInclude Include="lpng.h" />
     <ClInclude Include="MemoryDC.h" />
+    <ClInclude Include="MenuButton.h" />
     <ClInclude Include="puff.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -207,6 +208,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="MemoryDC.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="puff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
